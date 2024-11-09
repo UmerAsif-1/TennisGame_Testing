@@ -60,7 +60,6 @@ public class TennisGameTest {
 		game.player1Scored();
 		//Act
 		String score = game.getScore();
-	    assertEquals("Player 1 should win","player1 wins", score);
 		// This statement should cause an exception
 		game.player1Scored();			
 	}
@@ -75,9 +74,36 @@ public class TennisGameTest {
 		game.player2Scored();
 		//Act
 		String score = game.getScore();
-	    assertEquals("Player 2 should win","player2 wins", score);
 		// This statement should cause an exception
 		game.player2Scored();			
+	}
+	@Test
+	public void testTennisGame_Player1WinsGame()throws TennisGameException  {
+		//Arrange
+		TennisGame game = new TennisGame();
+		//Act
+		game.player1Scored();
+		game.player1Scored();
+		game.player1Scored();
+		game.player1Scored();
+		//Act
+		String score = game.getScore();
+	    assertEquals("Player 1 should win","player1 wins", score);
+	    		
+	}	
+	@Test
+	public void testTennisGame_Player2WinsGame()throws TennisGameException  {
+		//Arrange
+		TennisGame game = new TennisGame();
+		//Act
+		game.player2Scored();
+		game.player2Scored();
+		game.player2Scored();
+		game.player2Scored();
+		//Act
+		String score = game.getScore();
+	    assertEquals("Player 2 should win","player2 wins", score);
+	    		
 	}	
 	@Test 
     public void testTennisGame_Player1HasAdvantage() throws TennisGameException {
@@ -103,6 +129,30 @@ public class TennisGameTest {
         // Assert
         assertEquals("Player 1 should have advantage", "player1 has advantage", score);
     }
+	@Test 
+    public void testTennisGame_Player2HasAdvantage() throws TennisGameException {
+        // Arrange
+        TennisGame game = new TennisGame();
 
-	
+        //player 1 scored
+        game.player1Scored();
+        game.player1Scored();
+        game.player1Scored();
+
+        // player 2 scored
+        game.player2Scored();
+        game.player2Scored();
+        game.player2Scored();
+
+        // Player 1 scores the next point
+        game.player2Scored();
+
+        // Act
+        String score = game.getScore();
+
+        // Assert
+        assertEquals("Player 2 should have advantage", "player2 has advantage", score);
+    }
+
+
 }

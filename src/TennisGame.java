@@ -85,6 +85,6 @@ public class TennisGame {
 			if (player2Points >= 4 && player2Points - player1Points == 1)
 				return "player2 has advantage";							
 			
-			return  player1Score + " - " + player2Score ;
+			return  player2Score + " - " + player1Score ;
 	}
 }
